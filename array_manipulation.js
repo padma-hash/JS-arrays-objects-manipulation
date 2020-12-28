@@ -117,10 +117,36 @@ let employees= [
         }, {})
       }
       let onlineGroup = groupBy(employees, 'online')
-        console.log(onlineGroup);
+       // console.log(onlineGroup);
+
+        //consider a situation you need to use filter() and map() --> you can replace it with reduce(). since it is more efficient
+        //traverses the loop only once.
+       
+        const devOnline = employees.filter(onlineEmp => onlineEmp.Role === "Developer").map(onlineemp =>{
+          if( onlineemp.online === true)
+          {
+            return "online";
+          }
+          else
+          return "offline";
+        });
+        console.log("filter and map " + devOnline);
+
+        const devOnline2 = employees.reduce((accumulator, currentValue) => {
+          if (currentValue.Role === "Developer" && currentValue.online === true) {
+        
+            accumulator.push(currentValue.online);
+          }
+          return accumulator;
+        },[]);
+        console.log("reduce " + devOnline2);
+
+
+
      }
-   
+
+  
 
   
   
-  manipulateArray(employees);
+manipulateArray(employees);
