@@ -101,8 +101,26 @@ let employees= [
         "Email": "Dan@gmail.com",
         "online": true
       }
-      employees.splice(4, 0, newemp2); //index, # of items to remove, items to add
+      employees.splice(4, 0, newemp2); //parameters - index, # of items to remove, items to add
 
+
+      //returns single value that results from reduction.Can be used for grouping of objects, counting instances
+      //grouping peoples online
+      function groupBy(objectArray, property) {
+        return objectArray.reduce(function (acc, obj) {
+          let key = obj[property]
+          if (!acc[key]) {
+            acc[key] = []
+          }
+          acc[key].push(obj)
+          return acc
+        }, {})
+      }
+      let onlineGroup = groupBy(employees, 'online')
+        console.log(onlineGroup);
      }
+   
+
+  
   
   manipulateArray(employees);
